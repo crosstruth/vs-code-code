@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览建议</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "Microsoft YaHei", sans-serif;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        header h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, #6c63ff, #3fc1c9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p { color: #888; margin-top: 0.5rem; }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: 1.5rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.6rem 1rem;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .search-box:focus { border-color: #6c63ff; }
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .btn-random { background: linear-gradient(135deg, #6c63ff, #3fc1c9); color: #fff; }
+        .category-bar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 1rem 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .cat-btn {
+            padding: 0.4rem 1rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            border-color: #6c63ff;
+            color: #6c63ff;
+            background: rgba(108,99,255,0.1);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+            padding: 0 1rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1a1a2e;
+            border: 1px solid #262640;
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+        .card:hover { transform: translateY(-3px); border-color: #6c63ff; }
+        .card-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .card h3 { font-size: 1.05rem; margin-bottom: 0.3rem; color: #fff; }
+        .card p { font-size: 0.85rem; color: #999; line-height: 1.5; }
+        .card-tag {
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            background: rgba(108,99,255,0.15);
+            color: #6c63ff;
+        }
+        .empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #555;
+        }
+        .highlight {
+            animation: glow 1.5s ease;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 0 rgba(108,99,255,0); }
+            50% { box-shadow: 0 0 20px rgba(108,99,255,0.5); }
+            100% { box-shadow: 0 0 0 rgba(108,99,255,0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>浏览建议</h1>
+        <p>发现有趣的网站和工具</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" class="search-box" id="search" placeholder="搜索网站或工具...">
+        <button class="btn btn-random" onclick="randomPick()">随机推荐</button>
+    </div>
+
+    <div class="category-bar" id="catBar"></div>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const sites = [
+            { name: "GitHub", desc: "全球最大的代码托管平台，开源项目聚集地", icon: "🐙", cat: "开发" },
+            { name: "Stack Overflow", desc: "程序员问答社区，解决编程疑难杂症", icon: "📚", cat: "开发" },
+            { name: "MDN Web Docs", desc: "Mozilla 出品的 Web 技术权威文档", icon: "🦊", cat: "开发" },
+            { name: "CodePen", desc: "在线前端代码编辑与分享平台", icon: "✏️", cat: "开发" },
+            { name: "LeetCode", desc: "算法刷题平台，面试必备", icon: "🧩", cat: "开发" },
+            { name: "Can I Use", desc: "查询浏览器对 Web 特性的兼容性", icon: "🔍", cat: "开发" },
+            { name: "知乎", desc: "中文互联网高质量问答社区", icon: "💡", cat: "社区" },
+            { name: "Reddit", desc: "全球最大的社区论坛，话题无所不包", icon: "🤖", cat: "社区" },
+            { name: "Hacker News", desc: "科技创业资讯聚合，极客必读", icon: "🔶", cat: "社区" },
+            { name: "V2EX", desc: "创意工作者社区，讨论技术与生活", icon: "✨", cat: "社区" },
+            { name: "Product Hunt", desc: "每日最新产品推荐发现平台", icon: "🚀", cat: "社区" },
+            { name: "Dribbble", desc: "设计师作品展示与灵感发现", icon: "🎨", cat: "设计" },
+            { name: "Figma", desc: "协作式 UI 设计工具，在线即可用", icon: "🖌️", cat: "设计" },
+            { name: "Unsplash", desc: "免费高质量摄影图片资源库", icon: "📷", cat: "设计" },
+            { name: "Coolors", desc: "快速生成和谐的配色方案", icon: "🌈", cat: "设计" },
+            { name: "Coursera", desc: "全球顶尖大学在线课程平台", icon: "🎓", cat: "学习" },
+            { name: "Khan Academy", desc: "免费公益教育平台，数学与科学为主", icon: "📐", cat: "学习" },
+            { name: "freeCodeCamp", desc: "免费编程学习课程与认证", icon: "🏕️", cat: "学习" },
+            { name: "Wolfram Alpha", desc: "计算知识引擎，数学与数据查询利器", icon: "🧮", cat: "学习" },
+            { name: "DevDocs", desc: "多语言 API 文档聚合搜索", icon: "📖", cat: "工具" },
+            { name: "TinyPNG", desc: "智能图片压缩，大幅减小文件体积", icon: "🖼️", cat: "工具" },
+            { name: "Regex101", desc: "正则表达式在线测试与调试", icon: "⚙️", cat: "工具" },
+            { name: "JSON Crack", desc: "将 JSON 数据可视化为图表", icon: "🔮", cat: "工具" },
+            { name: "Excalidraw", desc: "手绘风格在线白板绘图工具", icon: "✍️", cat: "工具" },
+        ];
+
+        const categories = ["全部", ...new Set(sites.map(s => s.cat))];
+        let activeCat = "全部";
+        let keyword = "";
+
+        function renderCatBar() {
+            const bar = document.getElementById("catBar");
+            bar.innerHTML = categories.map(c =>
+                `<button class="cat-btn${c === activeCat ? " active" : ""}" onclick="setCat('${c}')">${c}</button>`
+            ).join("");
+        }
+
+        function renderGrid(highlightIdx = -1) {
+            const grid = document.getElementById("grid");
+            const filtered = sites.filter(s => {
+                const matchCat = activeCat === "全部" || s.cat === activeCat;
+                const matchKey = !keyword || s.name.toLowerCase().includes(keyword) || s.desc.includes(keyword) || s.cat.includes(keyword);
+                return matchCat && matchKey;
+            });
+
+            if (!filtered.length) {
+                grid.innerHTML = '<div class="empty">没有找到匹配的结果</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map((s, i) => {
+                const origIdx = sites.indexOf(s);
+                return `<div class="card${origIdx === highlightIdx ? " highlight" : ""}">
+                    <div class="card-icon">${s.icon}</div>
+                    <h3>${s.name}</h3>
+                    <p>${s.desc}</p>
+                    <span class="card-tag">${s.cat}</span>
+                </div>`;
+            }).join("");
+        }
+
+        function setCat(cat) {
+            activeCat = cat;
+            renderCatBar();
+            renderGrid();
+        }
+
+        document.getElementById("search").addEventListener("input", e => {
+            keyword = e.target.value.trim().toLowerCase();
+            renderGrid();
+        });
+
+        function randomPick() {
+            const filtered = sites.filter(s => {
+                const matchCat = activeCat === "全部" || s.cat === activeCat;
+                const matchKey = !keyword || s.name.toLowerCase().includes(keyword) || s.desc.includes(keyword) || s.cat.includes(keyword);
+                return matchCat && matchKey;
+            });
+            if (!filtered.length) return;
+            const pick = filtered[Math.floor(Math.random() * filtered.length)];
+            renderGrid(sites.indexOf(pick));
+        }
+
+        renderCatBar();
+        renderGrid();
+    </script>
+</body>
+</html>
