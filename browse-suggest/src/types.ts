@@ -3,4 +3,6 @@ export interface Site {
   desc: string;
   icon: string;
   cat: string;
+  url: string;
+  pinned?: boolean;
 }

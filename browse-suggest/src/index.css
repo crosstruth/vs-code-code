@@ -111,12 +111,14 @@ header p {
 }
 
 .card {
+  display: block;
   background: #1a1a2e;
   border: 1px solid #262640;
   border-radius: 12px;
   padding: 1.2rem;
   transition: transform 0.2s, border-color 0.2s;
-  cursor: default;
+  text-decoration: none;
+  color: inherit;
 }
 
 .card:hover {
@@ -149,6 +151,11 @@ header p {
   font-size: 0.75rem;
   background: rgba(108, 99, 255, 0.15);
   color: #6c63ff;
+}
+
+.pin {
+  font-size: 0.85rem;
+  vertical-align: middle;
 }
 
 .empty {

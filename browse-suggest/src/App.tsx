@@ -6,16 +6,18 @@ import SiteGrid from "./components/SiteGrid";
 function useFilteredSites(activeCat: string, keyword: string) {
   return useMemo(
     () =>
-      sites.filter((s) => {
-        const matchCat = activeCat === "全部" || s.cat === activeCat;
-        const kw = keyword.toLowerCase();
-        const matchKey =
-          !kw ||
-          s.name.toLowerCase().includes(kw) ||
-          s.desc.includes(kw) ||
-          s.cat.includes(kw);
-        return matchCat && matchKey;
-      }),
+      sites
+        .filter((s) => {
+          const matchCat = activeCat === "全部" || s.cat === activeCat;
+          const kw = keyword.toLowerCase();
+          const matchKey =
+            !kw ||
+            s.name.toLowerCase().includes(kw) ||
+            s.desc.includes(kw) ||
+            s.cat.includes(kw);
+          return matchCat && matchKey;
+        })
+        .sort((a, b) => Number(!!b.pinned) - Number(!!a.pinned)),
     [activeCat, keyword]
   );
 }
