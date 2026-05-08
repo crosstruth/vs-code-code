@@ -5,7 +5,15 @@
       "Bash(mkdir -p \"/c/Users/Cross Truth/vs code code/browse-suggest/public\")",
       "Bash(npm install *)",
       "Bash(npm cache *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(pip list *)",
+      "Bash(pip install *)",
+      "Bash(python -c \"import fpdf; print\\('fpdf installed'\\)\")",
+      "Bash(python \"E:/claude code test/generate_exam_pdfs.py\")",
+      "Bash(python -c ' *)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(npx vite *)",
+      "Read(//c/Users/CROSST~1/AppData/Local/Temp/claude/c--Users-Cross-Truth-vs-code-code/c61e29b4-71b2-4526-819e-08fc7728d1ae/tasks/**)"
     ]
   }
 }
