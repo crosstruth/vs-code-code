@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SimSun", "宋体", "PingFang SC", "Microsoft YaHei", serif;
+    background: #f0f0f0;
+    padding: 40px;
+    line-height: 1.8;
+  }
+  .paper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 60px 70px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+
+  /* 密封线 */
+  .seal-line {
+    border: 3px double #333;
+    border-right: none;
+    padding: 20px 16px;
+    float: left;
+    margin-left: -70px;
+    margin-right: 40px;
+    margin-top: -20px;
+    width: 48px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    letter-spacing: 4px;
+    writing-mode: vertical-lr;
+  }
+
+  .header {
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+  }
+  .header h1 { font-size: 26px; letter-spacing: 2px; margin-bottom: 8px; }
+  .header .sub { font-size: 15px; color: #555; }
+  .header .info {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #444;
+  }
+  .header .info span { margin: 0 18px; }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 36px 0 18px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #999;
+  }
+  .section-title .score { font-weight: normal; font-size: 14px; color: #666; margin-left: 12px; }
+
+  .q-block {
+    margin: 28px 0 36px;
+  }
+  .q-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .q-title .score { color: #c0392b; font-weight: bold; }
+
+  .material {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #444;
+  }
+  .material .label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 13px;
+    display: block;
+  }
+
+  .req {
+    margin: 16px 0;
+    font-size: 15px;
+  }
+  .req strong { color: #c0392b; }
+
+  .answer-grid {
+    margin-top: 40px;
+    border: 1px dashed #ccc;
+    padding: 20px;
+    min-height: 400px;
+  }
+  .answer-grid .hint {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+    margin-top: 180px;
+  }
+
+  .page-break { border: none; border-top: 1px dashed #999; margin: 60px 0; }
+
+  /* 答案部分 */
+  .answer-section {
+    background: #f9fafb;
+    padding: 50px 60px;
+    margin-top: 48px;
+    border-top: 3px double #333;
+  }
+  .answer-section h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 36px;
+    color: #2d3748;
+  }
+  .answer-item {
+    margin-bottom: 40px;
+  }
+  .answer-item h3 {
+    font-size: 17px;
+    color: #c0392b;
+    margin-bottom: 14px;
+  }
+  .rubric {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 14px 0;
+  }
+  .rubric table { width: 100%; border-collapse: collapse; }
+  .rubric td { padding: 6px 10px; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+  .rubric td:first-child { font-weight: bold; width: 80px; color: #555; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .paper { box-shadow: none; padding: 40px 50px; }
+    .answer-section { page-break-before: always; }
+    .seal-line { margin-left: -50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 试卷 ==================== -->
+<div class="paper">
+  <div class="seal-line">← 密封线内不要答题 →</div>
+
+  <div class="header">
+    <h1>2026年安徽省"三支一扶"招募考试</h1>
+    <div class="sub">《综合知识》主观题模拟试卷</div>
+    <div class="info">
+      <span>满分：40 分</span><span>时限：60 分钟</span><span>题量：3 题</span>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color:#888; margin-bottom:10px;">
+    <strong>说明：</strong>本试卷为《综合知识》主观题部分模拟练习，共两道大题、三道小题。请在规定时间内独立完成。
+  </p>
+
+  <!-- ===== 第一大题：公文写作 ===== -->
+  <div class="section-title">一、公文写作<span class="score">（本大题共 2 小题，第 1 小题 8 分，第 2 小题 7 分，共 15 分）</span></div>
+
+  <div class="q-block">
+    <div class="q-title">1.<span class="score">（8 分）</span></div>
+    <div class="material">
+      <span class="label">📄 背景材料</span>
+      当前正值"三夏"（夏收、夏种、夏管）关键时期。某县连日遭遇强降雨天气，导致部分乡镇小麦倒伏、田间积水严重，对夏粮收获造成较大威胁。县农业农村局决定紧急部署"三夏"生产应急工作，要求各乡（镇）人民政府、街道办事处高度重视，迅速组织农户抢排积水、抢收小麦，做好农机调度和烘干晾晒服务，同时加强灾情统计上报，确保颗粒归仓，最大程度减少损失。
+    </div>
+    <div class="req">
+      🔴 <strong>要求：</strong>请你以县农业农村局的名义，拟写一份发给各乡（镇）人民政府、街道办事处的 <strong>紧急通知</strong>。格式规范，内容完整，字数 400 字左右。（8 分）
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-title">2.<span class="score">（7 分）</span></div>
+    <div class="material">
+      <span class="label">📄 背景材料</span>
+      你所在的村地处皖南山区，村民以种植茶叶为主要收入来源。近年来，村里大力发展茶旅融合产业，打造"茶山民宿+采茶体验"项目，取得了初步成效。然而，目前还存在品牌知名度不够、产品销售渠道单一、专业运营人才匮乏等问题。村委会希望向上级争取政策和资金支持，用于品牌推广、电商平台搭建和人才培训。
+    </div>
+    <div class="req">
+      🔴 <strong>要求：</strong>请你以村委会的名义，给所属乡（镇）人民政府写一份 <strong>请示</strong>。格式规范，理由充分，事项明确，字数 350 字左右。（7 分）
+    </div>
+  </div>
+
+  <!-- ===== 第二大题：材料作文 ===== -->
+  <div class="section-title">二、材料作文<span class="score">（本题 25 分）</span></div>
+
+  <div class="q-block">
+    <div class="q-title">3.<span class="score">（25 分）</span></div>
+    <div class="material">
+      <span class="label">📄 给定材料</span>
+      <p style="margin-bottom:10px;"><strong>材料一：</strong>"青年强，则国家强。当代中国青年生逢其时，施展才干的舞台无比广阔，实现梦想的前景无比光明。"广大青年要让青春在全面建设社会主义现代化国家的火热实践中绽放绚丽之花。</p>
+      <p style="margin-bottom:10px;"><strong>材料二：</strong>近年来，安徽省大力实施"乡村振兴新青年计划"，鼓励高校毕业生到基层一线建功立业。据统计，全省已有超过 1.2 万名青年在乡村从事产业帮扶、教育医疗、基层治理等工作。1998 年出生的祁发宝（化名）大学毕业后放弃城市高薪工作，回到皖西老家创办生态养殖合作社，带动 32 户脱贫户实现年增收 8000 元以上。</p>
+      <p><strong>材料三：</strong>基层是政策落实的"最后一公里"，也是最需要人才的地方。但现实中，不少年轻人觉得基层条件差、发展空间小、上升通道窄，宁愿在城市"漂着"也不愿到基层"干着"。</p>
+    </div>
+    <div class="req">
+      🔴 <strong>要求：</strong>请深入理解上述材料，围绕<strong>"扎根基层沃土，书写青春答卷"</strong>这一主题，联系实际，自选角度，自拟标题，写一篇 <strong>不少于 600 字</strong> 的议论文。（25 分）
+      <p style="color:#888;font-size:13px;margin-top:6px;">要求观点明确，论据充分，论证有力，语言流畅，不得抄袭材料原文超过 200 字。</p>
+    </div>
+  </div>
+
+  <div class="answer-grid">
+    <div class="hint">—— 此处为答题区域，请用黑色签字笔作答 ——</div>
+  </div>
+</div>
+
+<!-- ==================== 参考答案 ==================== -->
+<div class="answer-section">
+  <h2>📝 参考答案及评分标准</h2>
+
+  <!-- 第1题答案 -->
+  <div class="answer-item">
+    <h3>第 1 题 参考答案（8 分）</h3>
+
+    <p style="font-weight:bold;margin-bottom:8px;color:#333;">紧急通知</p>
+
+    <p style="margin-bottom:16px;">
+      各乡（镇）人民政府、街道办事处：
+    </p>
+    <p style="margin-bottom:12px;text-indent:2em;">
+      当前我县已进入"三夏"生产关键期，连日强降雨导致部分乡镇出现小麦倒伏、田间积水等灾情，对夏粮收获造成严重威胁。为切实做好应急工作，最大程度减少灾害损失，确保夏粮颗粒归仓，现就有关事项紧急通知如下：
+    </p>
+    <p style="margin-bottom:6px;">一、迅速组织排涝抢收。各乡（镇）、街道要立即动员农户疏通沟渠、抢排田间积水，对倒伏小麦要组织机械和人力抢收，做到"成熟一块、收获一块"。</p>
+    <p style="margin-bottom:6px;">二、加强农机调度服务。统筹调配收割机、烘干机等农机具，优先满足受灾区域需求，确保农机跨区作业顺畅。开放学校操场、文化广场等公共场地供农户晾晒粮食。</p>
+    <p style="margin-bottom:6px;">三、做好灾情统计上报。各村（社区）要逐户核实受灾情况，建立台账，于每日 17:00 前将灾情数据报至县农业农村局种植业管理科。</p>
+    <p style="margin-bottom:6px;">四、强化技术指导帮扶。各乡（镇）农技站要组织技术人员深入田间地头，指导农户科学开展灾后田间管理。</p>
+    <p style="margin-bottom:16px;">五、做好保险理赔对接。及时对接农业保险承保机构，协助受灾农户做好定损理赔工作。</p>
+
+    <p style="margin-bottom:16px;">联系人：张某某 &nbsp;&nbsp; 联系电话：0551-XXXXXXXX</p>
+
+    <p style="text-align:right;margin-bottom:4px;">XX县农业农村局</p>
+    <p style="text-align:right;">2026年X月X日</p>
+
+    <div class="rubric">
+      <table>
+        <tr><td>格式（3分）</td><td>标题 0.5分、主送机关 0.5分、正文 1分、发文机关 0.5分、日期 0.5分</td></tr>
+        <tr><td>内容（4分）</td><td>背景交代清楚（1分）、措施具体可行（2分）、语言规范得体（1分）</td></tr>
+        <tr><td>整体（1分）</td><td>文字通顺、层次清晰、无错别字（1分）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 第2题答案 -->
+  <div class="answer-item">
+    <h3>第 2 题 参考答案（7 分）</h3>
+
+    <p style="font-weight:bold;margin-bottom:8px;color:#333;">关于申请茶旅融合产业发展扶持资金的请示</p>
+
+    <p style="margin-bottom:12px;">XX乡（镇）人民政府：</p>
+
+    <p style="margin-bottom:12px;text-indent:2em;">
+      我村地处皖南山区，现有茶园面积1500余亩，茶叶种植是村民主要收入来源。近年来，在乡党委政府的支持下，我村积极探索茶旅融合发展路径，建成"茶山民宿"8家、采茶制茶体验工坊2个，2025年接待游客3200余人次，带动村民户均增收4200元，取得初步成效。
+    </p>
+    <p style="margin-bottom:12px;text-indent:2em;">
+      然而，当前仍面临以下突出困难：一是品牌知名度不高，缺乏统一推广策划；二是产品销售渠道单一，主要依靠线下零散交易，电商平台尚未搭建；三是专业运营管理和电商人才匮乏，制约产业持续发展。
+    </p>
+    <p style="margin-bottom:12px;text-indent:2em;">
+      为推动茶旅产业提质增效，壮大村级集体经济，带动更多村民增收致富，现恳请乡（镇）人民政府在以下方面给予政策和资金支持：
+    </p>
+    <p style="margin-bottom:6px;text-indent:2em;">一、品牌推广方面，支持我村申请"皖南山茶"区域公用品牌使用授权，并补助品牌包装设计费用，预算约3万元。</p>
+    <p style="margin-bottom:6px;text-indent:2em;">二、电商建设方面，支持搭建农产品电商销售平台，补助直播设备购置及冷链物流设施建设，预算约8万元。</p>
+    <p style="margin-bottom:12px;text-indent:2em;">三、人才培训方面，支持开展茶艺师、电商运营等培训项目，每年培训不少于60人次，预算约2万元。</p>
+
+    <p style="margin-bottom:12px;text-indent:2em;">以上请示妥否，请批示。</p>
+
+    <p style="text-align:right;margin-bottom:4px;">XX乡XX村村民委员会</p>
+    <p style="text-align:right;">2026年X月X日</p>
+
+    <div class="rubric">
+      <table>
+        <tr><td>格式（2分）</td><td>标题（请示文种正确）0.5分、主送机关 0.5分、结语"妥否请批示" 0.5分、落款 0.5分</td></tr>
+        <tr><td>内容（4分）</td><td>背景和成效交代（1分）、困难和需求分析（1分）、请求事项具体明确（1.5分）、理由充分（0.5分）</td></tr>
+        <tr><td>整体（1分）</td><td>文字通顺规范（1分）</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 第3题答案 -->
+  <div class="answer-item">
+    <h3>第 3 题 参考范文（25 分）</h3>
+
+    <p style="font-weight:bold;font-size:18px;text-align:center;margin-bottom:20px;color:#1a1a2e;">向下扎根，向上生长</p>
+
+    <p style="margin-bottom:14px;text-indent:2em;">
+      基层是什么？基层是政策落地的"最后一公里"，是连接党心民心的桥梁，更是青年成长成才的沃土。当一些同龄人在城市的霓虹下犹豫徘徊时，安徽已有 1.2 万余名青年选择奔赴乡村田野，在广袤的基层大地上挥洒汗水、播种希望。这启示我们：青年要成就一番事业，就当<strong>向下扎根基层的深厚土壤，向上生长出绚丽的人生芳华</strong>。
+    </p>
+
+    <p style="margin-bottom:14px;text-indent:2em;">
+      <strong>扎根基层，是读懂中国的最好方式。</strong>"纸上得来终觉浅，绝知此事要躬行。"书本上的知识只有在实践中才能真正内化。走进田间地头，才能真切理解农民的期盼；深入千家万户，才能深刻感悟群众的冷暖。基层是一部无字大书，教会我们什么是实事求是、什么是群众路线。那些在基层摸爬滚打的日日夜夜，恰恰是在城市办公室里永远学不到的宝贵财富。
+    </p>
+
+    <p style="margin-bottom:14px;text-indent:2em;">
+      <strong>扎根基层，是锻炼本领的最佳平台。</strong>基层工作千头万绪，既是"上面千条线、下面一根针"的执行者，又是直面群众诉求的第一责任人。在这里，你需要学会调查研究、统筹协调、化解矛盾、推动落实。那位放弃城市高薪、回到皖西办起生态养殖合作社的"90 后"，不仅带动了 32 户脱贫户增收，更在实践中成长为懂农业、爱农村、爱农民的复合型人才。基层是一块磨刀石，能够磨砺出真正的能力与担当。
+    </p>
+
+    <p style="margin-bottom:14px;text-indent:2em;">
+      <strong>扎根基层，是实现价值的最宽路径。</strong>有人说基层空间小、上升慢。但事实上，乡村振兴的大幕已经拉开，广阔乡村正从"穷乡僻壤"变为"希望的田野"。从产业帮扶到乡村治理，从品牌运营到数字乡村，处处都是青年施展才华的舞台。更重要的是，当你的努力让一个村庄变了模样、让乡亲们的脸上有了更多笑容，那种被需要的价值感是金钱和安逸无法取代的。
+    </p>
+
+    <p style="margin-bottom:14px;text-indent:2em;">
+      当然，呼吁青年扎根基层，不能只靠情怀，更要靠制度保障。要用好用足"三支一扶"政策红利，畅通基层人才的上升通道，让愿意留在基层的人有盼头、有奔头。
+    </p>
+
+    <p style="text-indent:2em;">
+      每一粒种子，都要先埋入泥土才能破土而出。青年人的青春，也只有深深扎根在基层这片沃土中，才能汲取最丰富的养分，生长出最耀眼的花朵。让我们<strong>向下扎根、向上生长</strong>，在基层的广阔天地中书写无愧于时代的青春答卷！
+    </p>
+
+    <div class="rubric">
+      <table>
+        <tr><td colspan="2" style="font-weight:bold;color:#c0392b;">评分标准（25 分）</td></tr>
+        <tr><td style="width:100px;">一类文<br>(21-25分)</td><td>观点鲜明深刻，论证充分有力，结构严谨完整，语言流畅优美，能联系实际，有独到见解</td></tr>
+        <tr><td>二类文<br>(16-20分)</td><td>观点明确，论证较充分，结构完整，语言通顺，能结合材料，有一定说服力</td></tr>
+        <tr><td>三类文<br>(11-15分)</td><td>观点基本明确，有基本论证，结构大体完整，语言基本通顺，与材料有一定关联</td></tr>
+        <tr><td>四类文<br>(6-10分)</td><td>观点模糊，论证薄弱，结构松散，语言不通顺，偏离主题</td></tr>
+        <tr><td>五类文<br>(0-5分)</td><td>完全离题、抄袭材料超200字、或字数不足300字</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(pkill -f \"python -m http.server 8080\")",
+      "Bash(mv browse-suggest *)",
+      "Bash(mv c-arithmetic-pattern *)",
+      "Bash(mv portfolio *)",
+      "Bash(mv python-greet *)"
+    ]
+  }
+}

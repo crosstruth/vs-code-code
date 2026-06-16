@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>2026安徽三支一扶·综合知识模拟卷</title>
+<style>
+  @page { size: A4; margin: 18mm 20mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "SimSun","宋体","Microsoft YaHei",sans-serif;
+    background: #e8e8e8;
+    padding: 20px;
+    line-height: 1.8;
+    color: #1a1a1a;
+  }
+  .paper {
+    max-width: 210mm;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px 32px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  }
+  .header {
+    text-align: center;
+    border-bottom: 2.5px solid #222;
+    padding-bottom: 18px;
+    margin-bottom: 14px;
+  }
+  .header h1 { font-size: 22px; letter-spacing: 2px; }
+  .header .sub { font-size: 14px; color: #555; margin-top: 4px; }
+  .header .meta { font-size: 13px; color: #666; margin-top: 10px; }
+  .header .meta span { margin: 0 16px; }
+  .seal {
+    float: left; border: 2px double #333; padding: 12px 8px;
+    margin-left: -40px; margin-right: 24px; width: 38px;
+    text-align: center; font-size: 12px; letter-spacing: 3px;
+    writing-mode: vertical-lr; color: #333;
+  }
+  .timer-bar {
+    background: #1a5276; color: #fff; text-align: center;
+    padding: 8px; font-size: 14px; border-radius: 4px; margin-bottom: 20px;
+  }
+  .timer-bar strong { font-size: 18px; color: #f1c40f; }
+  .notice {
+    background: #fef9e7; border: 1px solid #f9e79f;
+    padding: 10px 16px; font-size: 13px; margin-bottom: 20px; border-radius: 4px;
+  }
+
+  .section-title {
+    font-size: 16px; font-weight: bold; margin: 28px 0 12px;
+    padding-bottom: 5px; border-bottom: 1px solid #aaa;
+  }
+  .sub-title { font-weight: bold; font-size: 14px; margin: 18px 0 10px; }
+
+  .q-item { margin: 12px 0; }
+  .q-num { font-weight: bold; }
+  .opts { margin-left: 20px; }
+  .opt { display: inline-block; width: 46%; margin: 2px 0; font-size: 14px; }
+  .opt.wide { width: 100%; }
+
+  .material-box {
+    background: #f8f9fa; border: 1px solid #ddd; padding: 14px 18px;
+    margin: 12px 0; font-size: 13px; border-radius: 4px;
+  }
+  .material-box p { margin-bottom: 8px; }
+
+  .essay-q { margin: 28px 0; }
+  .essay-q .title { font-weight: bold; font-size: 16px; margin-bottom: 8px; }
+  .essay-q .req { color: #c0392b; font-weight: bold; margin: 12px 0; }
+
+  .answer-grid {
+    border: 1px dashed #ccc; padding: 20px; min-height: 200px; margin: 30px 0;
+  }
+  .answer-grid .hint { text-align: center; color: #aaa; font-size: 14px; margin-top: 80px; }
+
+  .divider { border: none; border-top: 1px dashed #999; margin: 30px 0; }
+  .page-break { border: none; border-top: 1px dashed #999; margin: 40px 0; }
+
+  /* 答案部分 */
+  .answer-section {
+    margin-top: 40px; padding-top: 30px;
+    border-top: 3px double #333;
+  }
+  .answer-section h2 { text-align: center; font-size: 20px; margin-bottom: 24px; }
+  .answer-item { margin-bottom: 36px; }
+  .answer-item h3 { font-size: 15px; color: #c0392b; margin-bottom: 10px; }
+  .answer-item pre { white-space: pre-wrap; font-family: inherit; background: #fff; padding: 14px; border-radius: 4px; font-size: 14px; }
+  .rubric {
+    background: #fff; border: 1px solid #ddd; border-radius: 4px;
+    padding: 12px 16px; margin: 12px 0;
+  }
+  .rubric table { width: 100%; border-collapse: collapse; }
+  .rubric td { padding: 5px 8px; font-size: 13px; border-bottom: 1px solid #f0f0f0; }
+  .rubric td:first-child { font-weight: bold; width: 90px; color: #555; }
+  .ans-grid { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .paper { box-shadow: none; padding: 20px 24px; }
+    .seal { margin-left: -32px; }
+    .answer-section { page-break-before: always; }
+    .timer-bar { background: #555; -webkit-print-color-adjust: exact; }
+    .page-break { page-break-after: always; border: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 试卷 ==================== -->
+<div class="paper">
+<div class="seal">← 密封线内不要答题 →</div>
+
+<div class="timer-bar">
+  ⏱ 考试时间：<strong>10:00 — 12:00</strong> ｜ 时限：<strong>120 分钟</strong> ｜ 满分：<strong>100 分</strong> ｜ 客观题 + 主观题
+</div>
+
+<div class="header">
+  <h1>2026年安徽省"三支一扶"招募考试</h1>
+  <div class="sub">《综合知识》模拟试卷</div>
+  <div class="meta">
+    <span>客观题 60 分</span><span>主观题 40 分</span><span>时限：120 分钟</span>
+  </div>
+</div>
+
+<div class="notice">
+  <strong>注意事项：</strong><br>
+  1. 本试卷分为客观题和主观题两部分。客观题用 <strong>2B铅笔</strong> 在答题卡上填涂，主观题用 <strong>黑色签字笔</strong> 在答题纸上作答。<br>
+  2. 客观题共 60 题，每题 1 分，共 60 分；主观题共 3 题，共 40 分。<br>
+  3. 建议客观题用时 50-60 分钟，主观题用时 60-70 分钟。<br>
+  4. 多项选择题少选、多选、错选均不得分。
+</div>
+
+<!-- ========== 客观题部分 ========== -->
+<div class="section-title">第一部分　客观题（共 60 题，每题 1 分，共 60 分）</div>
+
+<!-- 一、单选题 1-50 -->
+<div class="sub-title">一、单项选择题（第 1—50 题，每题 1 分，共 50 分）</div>
+
+<div class="sub-title">（一）政治理论（第 1—15 题）</div>
+
+<div class="q-item"><span class="q-num">1.</span> 习近平新时代中国特色社会主义思想明确，坚持和发展中国特色社会主义，总任务是（　）<br>
+<div class="opts"><span class="opt wide">A. 全面建成小康社会</span><span class="opt wide">B. 实现社会主义现代化和中华民族伟大复兴</span><span class="opt wide">C. 全面依法治国</span><span class="opt wide">D. 全面深化改革</span></div></div>
+
+<div class="q-item"><span class="q-num">2.</span> "两个结合"是指把马克思主义基本原理同中国具体实际相结合、同（　）相结合。<br>
+<div class="opts"><span class="opt wide">A. 中华优秀传统文化</span><span class="opt">B. 中国特色社会主义实践</span><span class="opt wide">C. 世界发展趋势</span><span class="opt">D. 人类文明成果</span></div></div>
+
+<div class="q-item"><span class="q-num">3.</span> 党的二十届三中全会提出，到（　）年全面建成高水平社会主义市场经济体制。<br>
+<div class="opts"><span class="opt">A. 2029</span><span class="opt">B. 2035</span><span class="opt">C. 2040</span><span class="opt">D. 2050</span></div></div>
+
+<div class="q-item"><span class="q-num">4.</span> 中国式现代化的五个特征中，排在首位的是（　）<br>
+<div class="opts"><span class="opt wide">A. 全体人民共同富裕的现代化</span><span class="opt wide">B. 人口规模巨大的现代化</span><span class="opt wide">C. 人与自然和谐共生的现代化</span><span class="opt wide">D. 走和平发展道路的现代化</span></div></div>
+
+<div class="q-item"><span class="q-num">5.</span> 高质量发展是全面建设社会主义现代化国家的（　）<br>
+<div class="opts"><span class="opt">A. 根本动力</span><span class="opt">B. 首要任务</span><span class="opt">C. 基础工程</span><span class="opt">D. 战略支撑</span></div></div>
+
+<div class="q-item"><span class="q-num">6.</span> "四下基层"是指宣传党的路线、方针、政策下基层，调查研究下基层，（　），现场办公下基层。<br>
+<div class="opts"><span class="opt wide">A. 信访接待下基层</span><span class="opt">B. 政策落实下基层</span><span class="opt wide">C. 干部考核下基层</span><span class="opt">D. 资金拨付下基层</span></div></div>
+
+<div class="q-item"><span class="q-num">7.</span> 唯物辩证法的总特征是（　）<br>
+<div class="opts"><span class="opt wide">A. 对立统一规律</span><span class="opt wide">B. 联系的观点和发展的观点</span><span class="opt wide">C. 否定之否定规律</span><span class="opt wide">D. 量变与质变规律</span></div></div>
+
+<div class="q-item"><span class="q-num">8.</span> 习近平总书记强调，全面深化改革的出发点和落脚点是（　）<br>
+<div class="opts"><span class="opt wide">A. 促进社会公平正义、增进人民福祉</span><span class="opt wide">B. 提高经济增速</span><span class="opt wide">C. 扩大对外开放</span><span class="opt wide">D. 增强军事实力</span></div></div>
+
+<div class="q-item"><span class="q-num">9.</span> 社会主义核心价值观中，社会层面的价值取向是（　）<br>
+<div class="opts"><span class="opt wide">A. 富强、民主、文明、和谐</span><span class="opt wide">B. 自由、平等、公正、法治</span><span class="opt wide">C. 爱国、敬业、诚信、友善</span><span class="opt wide">D. 创新、协调、绿色、开放、共享</span></div></div>
+
+<div class="q-item"><span class="q-num">10.</span> 2025年国务院政府工作报告提出，2025年GDP增长预期目标为（　）<br>
+<div class="opts"><span class="opt">A. 4%左右</span><span class="opt">B. 4.5%左右</span><span class="opt">C. 5%左右</span><span class="opt">D. 5.5%左右</span></div></div>
+
+<div class="q-item"><span class="q-num">11.</span> 总体国家安全观强调以（　）为宗旨。<br>
+<div class="opts"><span class="opt">A. 政治安全</span><span class="opt">B. 经济安全</span><span class="opt">C. 人民安全</span><span class="opt">D. 军事安全</span></div></div>
+
+<div class="q-item"><span class="q-num">12.</span> "四风"问题是指形式主义、官僚主义、享乐主义和（　）<br>
+<div class="opts"><span class="opt">A. 自由主义</span><span class="opt">B. 奢靡之风</span><span class="opt">C. 教条主义</span><span class="opt">D. 宗派主义</span></div></div>
+
+<div class="q-item"><span class="q-num">13.</span> 习近平总书记提出的"绿水青山就是金山银山"理念，体现的发展观是（　）<br>
+<div class="opts"><span class="opt wide">A. 先发展后治理</span><span class="opt wide">B. 经济发展与环境保护有机统一</span><span class="opt wide">C. 只保护不发展</span><span class="opt wide">D. 环境保护服从经济发展</span></div></div>
+
+<div class="q-item"><span class="q-num">14.</span> 党的思想路线的核心是（　）<br>
+<div class="opts"><span class="opt">A. 理论联系实际</span><span class="opt">B. 密切联系群众</span><span class="opt">C. 实事求是</span><span class="opt">D. 批评与自我批评</span></div></div>
+
+<div class="q-item"><span class="q-num">15.</span> 2026年是"十四五"规划的（　）<br>
+<div class="opts"><span class="opt">A. 收官之年</span><span class="opt">B. 开局之年</span><span class="opt">C. 中期评估之年</span><span class="opt">D. 第四年</span></div></div>
+
+<div class="sub-title">（二）农业农村工作知识（第 16—30 题）</div>
+
+<div class="q-item"><span class="q-num">16.</span> 2025年中央一号文件的主题聚焦于（　）<br>
+<div class="opts"><span class="opt wide">A. 全面推进乡村振兴</span><span class="opt wide">B. 进一步深化农村改革扎实推进乡村全面振兴</span><span class="opt wide">C. 加快建设农业强国</span><span class="opt wide">D. 确保国家粮食安全</span></div></div>
+
+<div class="q-item"><span class="q-num">17.</span> 乡村振兴战略的"五大振兴"包括：产业振兴、人才振兴、文化振兴、生态振兴和（　）<br>
+<div class="opts"><span class="opt">A. 科技振兴</span><span class="opt">B. 组织振兴</span><span class="opt">C. 经济振兴</span><span class="opt">D. 教育振兴</span></div></div>
+
+<div class="q-item"><span class="q-num">18.</span> 农村土地"三权分置"改革中的"三权"是指所有权、承包权和（　）<br>
+<div class="opts"><span class="opt">A. 继承权</span><span class="opt">B. 抵押权</span><span class="opt">C. 经营权</span><span class="opt">D. 转让权</span></div></div>
+
+<div class="q-item"><span class="q-num">19.</span> 确保国家粮食安全，必须牢牢守住（　）亿亩耕地红线。<br>
+<div class="opts"><span class="opt">A. 15</span><span class="opt">B. 16</span><span class="opt">C. 18</span><span class="opt">D. 20</span></div></div>
+
+<div class="q-item"><span class="q-num">20.</span> 脱贫攻坚战全面胜利后，"三农"工作重心历史性地转移到（　）<br>
+<div class="opts"><span class="opt wide">A. 城市化建设</span><span class="opt wide">B. 全面推进乡村振兴</span><span class="opt wide">C. 工业化建设</span><span class="opt wide">D. 服务业发展</span></div></div>
+
+<div class="q-item"><span class="q-num">21.</span> 村级组织"一肩挑"制度是指（　）<br>
+<div class="opts"><span class="opt wide">A. 村党组织书记通过法定程序担任村民委员会主任</span><span class="opt wide">B. 乡镇党委书记兼任村党组织书记</span><span class="opt wide">C. 村主任兼任集体经济组织负责人</span><span class="opt wide">D. 村支书兼任村务监督委员会主任</span></div></div>
+
+<div class="q-item"><span class="q-num">22.</span> 《中华人民共和国乡村振兴促进法》规定，国家实施乡村振兴战略，坚持（　）优先发展。<br>
+<div class="opts"><span class="opt">A. 工业和城市</span><span class="opt">B. 农业农村</span><span class="opt">C. 金融服务业</span><span class="opt">D. 信息产业</span></div></div>
+
+<div class="q-item"><span class="q-num">23.</span> 防止返贫监测对象包括脱贫不稳定户、边缘易致贫户和（　）<br>
+<div class="opts"><span class="opt wide">A. 低保户</span><span class="opt wide">B. 突发严重困难户</span><span class="opt wide">C. 残疾人家庭</span><span class="opt wide">D. 空巢老人家庭</span></div></div>
+
+<div class="q-item"><span class="q-num">24.</span> 《中华人民共和国农村土地承包法》规定，耕地的承包期为（　）年。<br>
+<div class="opts"><span class="opt">A. 20</span><span class="opt">B. 30</span><span class="opt">C. 40</span><span class="opt">D. 50</span></div></div>
+
+<div class="q-item"><span class="q-num">25.</span> "千万工程"的发源地是（　）<br>
+<div class="opts"><span class="opt">A. 安徽省</span><span class="opt">B. 山东省</span><span class="opt">C. 浙江省</span><span class="opt">D. 江苏省</span></div></div>
+
+<div class="q-item"><span class="q-num">26.</span> 农村宅基地属于（　）所有。<br>
+<div class="opts"><span class="opt">A. 国家</span><span class="opt">B. 农民集体</span><span class="opt">C. 农户个人</span><span class="opt">D. 乡镇政府</span></div></div>
+
+<div class="q-item"><span class="q-num">27.</span> 农业新质生产力的核心是（　）<br>
+<div class="opts"><span class="opt wide">A. 增加劳动力投入</span><span class="opt wide">B. 科技创新驱动的先进生产力</span><span class="opt wide">C. 扩大耕地面积</span><span class="opt wide">D. 增加化肥使用量</span></div></div>
+
+<div class="q-item"><span class="q-num">28.</span> "大食物观"强调保障粮食安全要（　）<br>
+<div class="opts"><span class="opt wide">A. 只关注水稻和小麦</span><span class="opt wide">B. 多途径开发食物资源</span><span class="opt wide">C. 依靠大量进口</span><span class="opt wide">D. 只发展养殖业</span></div></div>
+
+<div class="q-item"><span class="q-num">29.</span> 乡村治理中推行的"积分制"主要目的是（　）<br>
+<div class="opts"><span class="opt wide">A. 增加政府财政收入</span><span class="opt wide">B. 激发村民参与乡村治理的内生动力</span><span class="opt wide">C. 限制村民自由</span><span class="opt wide">D. 扩大村干部权力</span></div></div>
+
+<div class="q-item"><span class="q-num">30.</span> 安徽省"千村引领、万村升级"工程属于（　）在安徽的具体实践。<br>
+<div class="opts"><span class="opt">A. 精准扶贫</span><span class="opt">B. 千万工程</span><span class="opt">C. 长三角一体化</span><span class="opt">D. 中部崛起</span></div></div>
+
+<div class="sub-title">（三）时事政治与安徽省情（第 31—38 题）</div>
+
+<div class="q-item"><span class="q-num">31.</span> 2024年嫦娥六号完成了人类历史上首次（　）采样返回。<br>
+<div class="opts"><span class="opt">A. 月球正面</span><span class="opt">B. 月球背面</span><span class="opt">C. 火星表面</span><span class="opt">D. 小行星</span></div></div>
+
+<div class="q-item"><span class="q-num">32.</span> 2025年是中国人民抗日战争暨世界反法西斯战争胜利（　）周年。<br>
+<div class="opts"><span class="opt">A. 75</span><span class="opt">B. 78</span><span class="opt">C. 80</span><span class="opt">D. 85</span></div></div>
+
+<div class="q-item"><span class="q-num">33.</span> 安徽省的省会城市是（　）<br>
+<div class="opts"><span class="opt">A. 南京</span><span class="opt">B. 杭州</span><span class="opt">C. 合肥</span><span class="opt">D. 芜湖</span></div></div>
+
+<div class="q-item"><span class="q-num">34.</span> 安徽自贸试验区于（　）年获批设立。<br>
+<div class="opts"><span class="opt">A. 2018</span><span class="opt">B. 2019</span><span class="opt">C. 2020</span><span class="opt">D. 2021</span></div></div>
+
+<div class="q-item"><span class="q-num">35.</span> 安徽省提出的"三地一区"战略定位中，"三地"不包括（　）<br>
+<div class="opts"><span class="opt wide">A. 科技创新策源地</span><span class="opt wide">B. 新兴产业聚集地</span><span class="opt wide">C. 改革开放新高地</span><span class="opt wide">D. 绿色能源示范地</span></div></div>
+
+<div class="q-item"><span class="q-num">36.</span> 合肥综合性国家科学中心是（　）个获批的国家科学中心之一。<br>
+<div class="opts"><span class="opt">A. 二</span><span class="opt">B. 三</span><span class="opt">C. 四</span><span class="opt">D. 五</span></div></div>
+
+<div class="q-item"><span class="q-num">37.</span> "六尺巷工作法"发源于安徽（　），是基层社会治理的典型经验。<br>
+<div class="opts"><span class="opt">A. 合肥</span><span class="opt">B. 黄山</span><span class="opt">C. 桐城</span><span class="opt">D. 六安</span></div></div>
+
+<div class="q-item"><span class="q-num">38.</span> 长江十年禁渔自（　）起实施。<br>
+<div class="opts"><span class="opt">A. 2020年1月1日</span><span class="opt">B. 2021年1月1日</span><span class="opt">C. 2022年1月1日</span><span class="opt">D. 2023年1月1日</span></div></div>
+
+<div class="sub-title">（四）法律基础（第 39—45 题）</div>
+
+<div class="q-item"><span class="q-num">39.</span> 我国现行宪法是（　）年通过的。<br>
+<div class="opts"><span class="opt">A. 1949</span><span class="opt">B. 1954</span><span class="opt">C. 1978</span><span class="opt">D. 1982</span></div></div>
+
+<div class="q-item"><span class="q-num">40.</span> 根据《民法典》，自然人从（　）时起具有民事权利能力。<br>
+<div class="opts"><span class="opt">A. 出生</span><span class="opt">B. 年满10周岁</span><span class="opt">C. 年满16周岁</span><span class="opt">D. 年满18周岁</span></div></div>
+
+<div class="q-item"><span class="q-num">41.</span> 行政诉讼中，对作出的行政行为负有举证责任的是（　）<br>
+<div class="opts"><span class="opt">A. 原告</span><span class="opt">B. 被告（行政机关）</span><span class="opt">C. 第三人</span><span class="opt">D. 人民法院</span></div></div>
+
+<div class="q-item"><span class="q-num">42.</span> 我国《劳动法》规定劳动者每日工作时间不超过（　）小时。<br>
+<div class="opts"><span class="opt">A. 6</span><span class="opt">B. 8</span><span class="opt">C. 10</span><span class="opt">D. 12</span></div></div>
+
+<div class="q-item"><span class="q-num">43.</span> 《民法典》规定的普通诉讼时效期间为（　）年。<br>
+<div class="opts"><span class="opt">A. 1</span><span class="opt">B. 2</span><span class="opt">C. 3</span><span class="opt">D. 5</span></div></div>
+
+<div class="q-item"><span class="q-num">44.</span> 下列不属于我国刑法主刑的是（　）<br>
+<div class="opts"><span class="opt">A. 管制</span><span class="opt">B. 拘役</span><span class="opt">C. 罚金</span><span class="opt">D. 有期徒刑</span></div></div>
+
+<div class="q-item"><span class="q-num">45.</span> 农村集体经济组织法人属于（　）<br>
+<div class="opts"><span class="opt">A. 营利法人</span><span class="opt">B. 非营利法人</span><span class="opt">C. 特别法人</span><span class="opt">D. 社团法人</span></div></div>
+
+<div class="sub-title">（五）公文处理（第 46—50 题）</div>
+
+<div class="q-item"><span class="q-num">46.</span> 下列公文种类中，用于向上级机关汇报工作、反映情况的是（　）<br>
+<div class="opts"><span class="opt">A. 请示</span><span class="opt">B. 报告</span><span class="opt">C. 通知</span><span class="opt">D. 函</span></div></div>
+
+<div class="q-item"><span class="q-num">47.</span> 公文标题一般由发文机关、事由和（　）三部分组成。<br>
+<div class="opts"><span class="opt">A. 日期</span><span class="opt">B. 编号</span><span class="opt">C. 文种</span><span class="opt">D. 印章</span></div></div>
+
+<div class="q-item"><span class="q-num">48.</span> 下级机关向上级机关请求指示、批准，应当使用（　）<br>
+<div class="opts"><span class="opt">A. 报告</span><span class="opt">B. 请示</span><span class="opt">C. 函</span><span class="opt">D. 通知</span></div></div>
+
+<div class="q-item"><span class="q-num">49.</span> 公文的成文日期通常以（　）为准。<br>
+<div class="opts"><span class="opt wide">A. 起草日期</span><span class="opt wide">B. 负责人签发的日期</span><span class="opt wide">C. 印发日期</span><span class="opt wide">D. 送达日期</span></div></div>
+
+<div class="q-item"><span class="q-num">50.</span> 下列公文发文字号格式正确的是（　）<br>
+<div class="opts"><span class="opt wide">A. 皖政〔2026〕第5号</span><span class="opt wide">B. 皖政〔2026〕5号</span><span class="opt wide">C. 皖政（2026）5号</span><span class="opt wide">D. 皖政2026 5号</span></div></div>
+
+<!-- 二、多选题 51-55 -->
+<div class="sub-title">二、多项选择题（第 51—55 题，每题 2 分，共 10 分）</div>
+
+<div class="q-item"><span class="q-num">51.</span> 下列属于"六个必须坚持"的有（　）<br>
+<div class="opts"><span class="opt wide">A. 必须坚持人民至上</span><span class="opt wide">B. 必须坚持自信自立</span><span class="opt wide">C. 必须坚持守正创新</span><span class="opt wide">D. 必须坚持系统观念</span></div></div>
+
+<div class="q-item"><span class="q-num">52.</span> 关于农村宅基地制度，下列表述正确的有（　）<br>
+<div class="opts"><span class="opt wide">A. 农村宅基地属于农民集体所有</span><span class="opt wide">B. 农村村民一户只能拥有一处宅基地</span><span class="opt wide">C. 城镇居民可以在农村购买宅基地</span><span class="opt wide">D. 允许进城落户农民依法自愿有偿退出宅基地</span></div></div>
+
+<div class="q-item"><span class="q-num">53.</span> 乡村振兴战略的总要求包括（　）<br>
+<div class="opts"><span class="opt wide">A. 产业兴旺</span><span class="opt wide">B. 生态宜居</span><span class="opt wide">C. 乡风文明</span><span class="opt wide">D. 治理有效</span></div></div>
+
+<div class="q-item"><span class="q-num">54.</span> 下列属于中国式现代化特征的有（　）<br>
+<div class="opts"><span class="opt wide">A. 人口规模巨大的现代化</span><span class="opt wide">B. 全体人民共同富裕的现代化</span><span class="opt wide">C. 人与自然和谐共生的现代化</span><span class="opt wide">D. 走和平发展道路的现代化</span></div></div>
+
+<div class="q-item"><span class="q-num">55.</span> 新质生产力的特点包括（　）<br>
+<div class="opts"><span class="opt wide">A. 创新起主导作用</span><span class="opt wide">B. 具有高科技、高效能、高质量特征</span><span class="opt wide">C. 符合新发展理念</span><span class="opt wide">D. 全要素生产率大幅提升</span></div></div>
+
+<div class="divider"></div>
+
+<!-- ========== 主观题部分 ========== -->
+<div class="section-title">第二部分　主观题（共 3 题，共 40 分）</div>
+
+<div class="essay-q">
+  <div class="title">一、公文写作（10 分）</div>
+  <div class="material-box">
+    <strong>📄 背景材料</strong>
+    <p>当前正值"三夏"（夏收、夏种、夏管）关键时期。某县连日遭遇强降雨天气，导致部分乡镇小麦倒伏、田间积水严重，对夏粮收获造成较大威胁。县农业农村局决定紧急部署"三夏"生产应急工作，要求各乡（镇）人民政府、街道办事处高度重视，迅速组织农户抢排积水、抢收小麦，做好农机调度和烘干晾晒服务，加强灾情统计上报，确保颗粒归仓。</p>
+  </div>
+  <div class="req">🔴 要求：请以县农业农村局的名义，拟写一份发给各乡（镇）人民政府、街道办事处的<strong>紧急通知</strong>。格式规范，内容完整，400 字左右。（10 分）</div>
+</div>
+
+<div class="essay-q">
+  <div class="title">二、公文写作（5 分）</div>
+  <div class="material-box">
+    <strong>📄 背景材料</strong>
+    <p>某村地处皖南山区，村民以种植茶叶为主要收入。近年来，村里发展茶旅融合产业，打造"茶山民宿+采茶体验"项目取得初步成效，但还存在品牌知名度不够、销售渠道单一、专业人才匮乏等问题。村委会希望向上级争取政策和资金支持。</p>
+  </div>
+  <div class="req">🔴 要求：请以村委会名义，给所属乡（镇）人民政府写一份<strong>请示</strong>。格式规范，理由充分，事项明确，300 字左右。（5 分）</div>
+</div>
+
+<div class="essay-q">
+  <div class="title">三、材料作文（25 分）</div>
+  <div class="material-box">
+    <strong>📄 给定材料</strong>
+    <p><strong>材料一：</strong>"青年强，则国家强。当代中国青年生逢其时，施展才干的舞台无比广阔，实现梦想的前景无比光明。"</p>
+    <p><strong>材料二：</strong>安徽省大力实施"乡村振兴新青年计划"，鼓励高校毕业生到基层一线建功立业。全省已有超1.2万名青年在乡村从事产业帮扶、教育医疗、基层治理等工作。某"95后"大学毕业生放弃城市工作，回皖西创办生态养殖合作社，带动32户脱贫户年增收8000元以上。</p>
+    <p><strong>材料三：</strong>基层是政策落实的"最后一公里"，也是最需要人才的地方。但现实中不少年轻人觉得基层条件差、发展空间小，宁愿在城市"漂着"也不愿到基层"干着"。</p>
+  </div>
+  <div class="req">🔴 要求：围绕<strong>"扎根基层沃土，书写青春答卷"</strong>这一主题，自选角度，自拟标题，写一篇<strong>不少于 600 字</strong>的议论文。（25 分）</div>
+</div>
+
+<div class="answer-grid">
+  <div class="hint">—— 此处为答题区域，请用黑色签字笔作答 ——</div>
+</div>
+
+<p style="text-align:center;margin-top:40px;font-size:16px;font-weight:bold;">—— 试卷结束 ——</p>
+
+</div>
+
+<!-- ==================== 参考答案 ==================== -->
+<div class="answer-section">
+<h2>📝 参考答案及评分标准</h2>
+
+<!-- 客观题答案 -->
+<div class="answer-item">
+  <h3>第一部分　客观题答案</h3>
+
+  <div style="margin-bottom:12px;"><strong>一、单选题（1—50题，每题1分）</strong></div>
+  <div class="ans-grid" style="font-size:13px;">
+    <span>1-5: B A B B B</span><span>6-10: A B A B C</span>
+    <span>11-15: C B B C A</span><span>16-20: B B C C B</span>
+    <span>21-25: A B B B C</span><span>26-30: B B B B B</span>
+    <span>31-35: B C C C D</span><span>36-40: C C B D A</span>
+    <span>41-45: B B C C C</span><span>46-50: B C B B B</span>
+  </div>
+
+  <div style="margin:10px 0;"><strong>二、多选题（51—55题，每题2分，共10分）</strong></div>
+  <div class="ans-grid">
+    <span>51. ABCD</span><span>52. ABD</span><span>53. ABCD</span><span>54. ABCD</span><span>55. ABCD</span>
+  </div>
+</div>
+
+<!-- 主观题答案 -->
+<div class="answer-item">
+  <h3>第 1 题　紧急通知（10 分）</h3>
+<pre>关于做好"三夏"生产应急工作的紧急通知
+
+各乡（镇）人民政府、街道办事处：
+
+当前我县已进入"三夏"生产关键期，连日强降雨导致部分乡镇出现小麦倒伏、田间积水等灾情，对夏粮收获造成严重威胁。为切实做好应急工作，确保颗粒归仓，现紧急通知如下：
+
+一、迅速组织排涝抢收。立即动员农户疏通沟渠、抢排积水，对倒伏小麦组织机械和人力抢收，做到"成熟一块、收获一块"。
+
+二、加强农机调度服务。统筹调配收割机、烘干机等农机具，优先满足受灾区域需求。开放学校操场、文化广场等公共场地供农户晾晒粮食。
+
+三、做好灾情统计上报。各村（社区）逐户核实受灾情况，建立台账，每日17:00前将灾情数据报至县农业农村局种植业管理科。
+
+四、强化技术指导帮扶。各乡（镇）农技站组织技术人员深入田间地头，指导农户科学开展灾后田间管理。
+
+五、做好保险理赔对接。及时对接农业保险承保机构，协助受灾农户做好定损理赔。
+
+联系人：张某某　　电话：0551-XXXXXXXX
+
+                                       XX县农业农村局
+                                       2026年X月X日</pre>
+  <div class="rubric">
+    <table>
+      <tr><td>格式（3分）</td><td>标题0.5+主送机关0.5+正文1+发文机关0.5+日期0.5</td></tr>
+      <tr><td>内容（5分）</td><td>背景交代清楚1+措施具体可行3+语言规范得体1</td></tr>
+      <tr><td>整体（2分）</td><td>文字通顺1+层次清晰1</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="answer-item">
+  <h3>第 2 题　请示（5 分）</h3>
+<pre>关于申请茶旅融合产业发展扶持资金的请示
+
+XX乡（镇）人民政府：
+
+我村地处皖南山区，现有茶园1500余亩，茶叶种植是村民主要收入来源。近年来，我村积极探索茶旅融合发展路径，建成"茶山民宿"8家、采茶制茶体验工坊2个，2025年接待游客3200余人次，带动村民户均增收4200元，取得初步成效。
+
+当前面临以下困难：一是品牌知名度不高，缺乏统一推广；二是销售渠道单一，以线下零散交易为主；三是专业运营和电商人才匮乏。
+
+为推动茶旅产业提质增效，壮大村级集体经济，恳请乡（镇）政府在以下方面给予支持：
+
+一、品牌推广方面，支持申请区域公用品牌授权，补助品牌包装设计费用，预算约3万元。
+
+二、电商建设方面，支持搭建电商销售平台，补助直播设备及冷链物流设施，预算约8万元。
+
+三、人才培训方面，支持开展茶艺师、电商运营等培训，每年不少于60人次，预算约2万元。
+
+以上请示妥否，请批示。
+
+                                       XX乡XX村村民委员会
+                                       2026年X月X日</pre>
+  <div class="rubric">
+    <table>
+      <tr><td>格式（1.5分）</td><td>标题0.5+主送机关0.25+结语0.25+落款0.5</td></tr>
+      <tr><td>内容（3分）</td><td>背景成效0.5+困难分析0.5+请求事项具体1.5+理由充分0.5</td></tr>
+      <tr><td>整体（0.5分）</td><td>文字通顺规范</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="answer-item">
+  <h3>第 3 题　参考范文及评分标准（25 分）</h3>
+  <p style="font-weight:bold;font-size:17px;text-align:center;margin:16px 0;">向下扎根，向上生长</p>
+<pre>基层是什么？基层是政策落地的"最后一公里"，是连接党心民心的桥梁，更是青年成长成才的沃土。当一些同龄人在城市的霓虹下犹豫徘徊时，安徽已有1.2万余名青年选择奔赴乡村田野，在广袤的基层大地上挥洒汗水、播种希望。这启示我们：青年要成就一番事业，就当向下扎根基层的深厚土壤，向上生长出绚丽的人生芳华。
+
+扎根基层，是读懂中国的最好方式。"纸上得来终觉浅，绝知此事要躬行。"走进田间地头，才能真切理解农民的期盼；深入千家万户，才能深刻感悟群众的冷暖。基层是一部无字大书，教会我们什么是实事求是、什么是群众路线。
+
+扎根基层，是锻炼本领的最佳平台。基层工作千头万绪，既是"上面千条线、下面一根针"的执行者，又是直面群众诉求的第一责任人。在这里，你需要学会调查研究、统筹协调、化解矛盾、推动落实。那位放弃城市高薪、回到皖西办起生态养殖合作社的"95后"，不仅带动了32户脱贫户增收，更在实践中成长为懂农业、爱农村、爱农民的复合型人才。
+
+扎根基层，是实现价值的最宽路径。有人说基层空间小、上升慢。但事实上，乡村振兴的大幕已经拉开，广阔乡村正从"穷乡僻壤"变为"希望的田野"。当你的努力让一个村庄变了模样、让乡亲们的脸上有了更多笑容，那种被需要的价值感是金钱和安逸无法取代的。
+
+当然，呼吁青年扎根基层，不能只靠情怀，更要靠制度保障。要用好用足"三支一扶"政策红利，畅通基层人才的上升通道，让愿意留在基层的人有盼头、有奔头。
+
+每一粒种子，都要先埋入泥土才能破土而出。让我们向下扎根、向上生长，在基层的广阔天地中书写无愧于时代的青春答卷！</pre>
+  <div class="rubric">
+    <table>
+      <tr><td>一类文(21-25)</td><td>观点鲜明深刻，论证充分有力，结构严谨完整，语言流畅优美，能联系实际</td></tr>
+      <tr><td>二类文(16-20)</td><td>观点明确，论证较充分，结构完整，语言通顺，能结合材料</td></tr>
+      <tr><td>三类文(11-15)</td><td>观点基本明确，有基本论证，结构大体完整，语言基本通顺</td></tr>
+      <tr><td>四类文(6-10)</td><td>观点模糊，论证薄弱，结构松散，语言不通顺，偏离主题</td></tr>
+      <tr><td>五类文(0-5)</td><td>完全离题、抄袭材料超200字、或字数不足300字</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #2d3748;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #a0aec0;
+    margin-bottom: 28px;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+  }
+  th {
+    background: #4c51bf;
+    color: white;
+    padding: 14px 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  td {
+    padding: 14px 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #4a5568;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) { background: #f7fafc; }
+  .date {
+    font-weight: 700;
+    color: #5a67d8;
+    font-size: 15px;
+  }
+  .day-tag {
+    display: inline-block;
+    background: #ebf4ff;
+    color: #4c51bf;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .subject {
+    color: #2d3748;
+    font-weight: 500;
+  }
+  .note {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #a0aec0;
+  }
+  .emoji { font-size: 20px; }
+  .highlight {
+    background: #fefcbf !important;
+  }
+  .today-badge {
+    display: inline-block;
+    background: #fc8181;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-left: 6px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>📝 2026 合肥中考时间表</h1>
+  <p class="subtitle">安徽省初中学业水平考试 · 合肥考区</p>
+
+  <table>
+    <tr>
+      <th>日期</th>
+      <th>上午</th>
+      <th>下午</th>
+    </tr>
+    <tr class="highlight">
+      <td>
+        <div class="date">6月14日</div>
+        <div class="day-tag">周日</div>
+        <span class="today-badge">今天</span>
+      </td>
+      <td class="subject">📖 语文<br><small>8:30 - 11:00</small></td>
+      <td class="subject">📐 数学<br><small>14:30 - 16:30</small></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="date">6月15日</div>
+        <div class="day-tag">周一</div>
+      </td>
+      <td class="subject">🔬 物理 / 化学<br><small>8:30 - 11:00</small></td>
+      <td class="subject">🎧 英语<br><small>14:30 - 16:30</small></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="date">6月16日</div>
+        <div class="day-tag">周二</div>
+      </td>
+      <td class="subject">📚 道德与法治 / 历史<br><small>8:30 - 11:00</small></td>
+      <td style="color:#cbd5e0;">—</td>
+    </tr>
+  </table>
+
+  <p class="note">⚠️ 具体安排以合肥市教育局官方公告为准<br>祝所有考生金榜题名 🎓</p>
+</div>
+</body>
+</html>
