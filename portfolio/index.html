@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张三 — 设计师 / 开发者</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    color: #2b2b2b;
+    background: #fafaf9;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Nav ───────────────────────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250, 250, 249, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .nav.scrolled { border-bottom-color: #e8e8e6; }
+
+  .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; color: #1a1a1a; }
+
+  .nav-links { display: flex; list-style: none; gap: 2rem; }
+  .nav-links a { font-size: 0.9rem; font-weight: 500; color: #666; transition: color 0.2s; }
+  .nav-links a:hover { color: #1a1a1a; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: #2b2b2b; transition: 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── Sections ──────────────────────────── */
+  section { padding: 6rem 2rem; }
+
+  .container { max-width: 800px; margin: 0 auto; }
+
+  /* ── Hero ──────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 60px;
+  }
+  .hero .container { max-width: 680px; }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 700; letter-spacing: -0.03em; color: #1a1a1a; line-height: 1.15; }
+  .hero .subtitle { margin-top: 1rem; font-size: 1.15rem; color: #888; font-weight: 400; }
+  .btn {
+    display: inline-block; margin-top: 2.4rem;
+    padding: 0.7rem 2rem;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: -0.01em;
+    color: #fafaf9; background: #1a1a1a;
+    border: none; border-radius: 40px;
+    cursor: pointer; transition: background 0.25s, transform 0.2s;
+  }
+  .btn:hover { background: #3d3d3d; }
+  .btn:active { transform: scale(0.97); }
+
+  /* ── About ─────────────────────────────── */
+  .about { background: #fff; }
+  .section-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 1rem; }
+  .about h2 { font-size: 2rem; font-weight: 650; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+  .about p { max-width: 540px; font-size: 1rem; color: #555; line-height: 1.75; }
+
+  /* ── Works ─────────────────────────────── */
+  .works h2 { font-size: 2rem; font-weight: 650; letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.8rem;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s, transform 0.25s;
+  }
+  .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.05); transform: translateY(-2px); }
+
+  .card-icon {
+    width: 48px; height: 48px; border-radius: 10px; margin-bottom: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: #fff;
+  }
+  .card:nth-child(1) .card-icon { background: #b0b0b0; }
+  .card:nth-child(2) .card-icon { background: #b8c5d0; }
+  .card:nth-child(3) .card-icon { background: #c5bfb5; }
+
+  .card h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.9rem; color: #777; line-height: 1.6; }
+
+  /* ── Contact ───────────────────────────── */
+  .contact { background: #fff; }
+  .contact h2 { font-size: 2rem; font-weight: 650; letter-spacing: -0.02em; margin-bottom: 1rem; }
+  .contact .email { font-size: 1.1rem; color: #555; margin-bottom: 1.5rem; word-break: break-all; }
+
+  .social-icons { display: flex; gap: 1.2rem; }
+  .social-icons a {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #f3f3f2; color: #666;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: background 0.2s, color 0.2s;
+  }
+  .social-icons a:hover { background: #1a1a1a; color: #fafaf9; }
+
+  /* ── Footer ────────────────────────────── */
+  .footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem; color: #aaa;
+    border-top: 1px solid #eee;
+  }
+
+  /* ── Responsive ────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-links {
+      position: fixed; top: 60px; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: rgba(250, 250, 249, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e8e8e6;
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .nav-links.active { max-height: 260px; padding: 0.8rem 0; }
+    .nav-links a { display: block; padding: 0.7rem 2rem; font-size: 0.95rem; }
+
+    .hamburger { display: flex; }
+
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">张三</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">首页</a></li>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#works">作品</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container">
+    <h1>创造简洁而<br>有用的事物。</h1>
+    <p class="subtitle">张三 · 设计师 / 开发者</p>
+    <a href="#works" class="btn">查看作品</a>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">关于</div>
+    <h2>在简洁与功能之间<br>寻找平衡。</h2>
+    <p>我是一名专注于数字产品设计与开发的设计师。我相信好的设计应该既美观又实用——去掉一切不必要的元素，只保留真正重要的东西。过去五年里，我致力于打造让人感到平静且高效的数字体验，从品牌标识到完整的 Web 应用，每个项目都让我更接近这个目标。</p>
+  </div>
+</section>
+
+<!-- Works -->
+<section class="works" id="works">
+  <div class="container">
+    <div class="section-label">作品</div>
+    <h2>精选项目</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>静山 — 品牌设计</h3>
+        <p>为一间独立茶室打造的完整品牌视觉系统，包含标志、包装与空间指示，传递自然与沉静感。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <h3>Flow — Web 应用</h3>
+        <p>极简任务管理工具，强调键盘操作与专注体验。用 React 构建，服务超过 2000 名用户。</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-pencil"></i></div>
+        <h3>墨 · 插画系列</h3>
+        <p>一组以黑白灰为主调的抽象数字插画，探索线条、纹理与留白之间的节奏关系。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-label">联系</div>
+    <h2>来聊聊。</h2>
+    <p class="email">hello@zhangsan.design</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2025 张三</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  const links = navLinks.querySelectorAll('a');
+
+  /* scroll shadow */
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  /* hamburger toggle */
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('active');
+  });
+
+  /* close menu on link click + smooth scroll */
+  links.forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
