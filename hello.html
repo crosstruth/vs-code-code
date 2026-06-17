@@ -3,28 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>3D Earth Globe</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: #1e1e1e;
-            color: #d4d4d4;
-            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            background: #000;
+            cursor: grab;
         }
-        h1 {
-            font-size: 3rem;
+        body:active { cursor: grabbing; }
+        body.dragging { cursor: grabbing; }
+
+        canvas { display: block; }
+
+        #title {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 700;
             background: linear-gradient(135deg, #4ec9b0, #569cd6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            pointer-events: none;
+            z-index: 10;
+            text-shadow: none;
+            letter-spacing: 2px;
+        }
+
+        #time-display {
+            position: fixed;
+            top: 24px;
+            right: 28px;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Segoe UI', monospace;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 10;
+            letter-spacing: 1px;
+        }
+
+        #hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            pointer-events: none;
+            transition: opacity 1s;
         }
     </style>
 </head>
 <body>
-    <h1>Hello, World! 🌍</h1>
+    <h1 id="title">Hello, World! 🌍</h1>
+    <div id="time-display"></div>
+    <div id="hint">🖱️ 拖拽旋转 &nbsp;|&nbsp; 滚轮缩放</div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // ========== 场景、相机、渲染器 ==========
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 4.5);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        document.body.appendChild(renderer.domElement);
+
+        // ========== 星空背景 ==========
+        const starsGeo = new THREE.BufferGeometry();
+        const starsCount = 2000;
+        const starsPositions = new Float32Array(starsCount * 3);
+        for (let i = 0; i < starsCount * 3; i += 3) {
+            starsPositions[i]     = (Math.random() - 0.5) * 100;
+            starsPositions[i + 1] = (Math.random() - 0.5) * 100;
+            starsPositions[i + 2] = (Math.random() - 0.5) * 100;
+        }
+        starsGeo.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+        const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05, transparent: true });
+        const stars = new THREE.Points(starsGeo, starsMat);
+        scene.add(stars);
+
+        // ========== 动态光照（太阳固定 + 地球自转） ==========
+        const ambientLight = new THREE.AmbientLight(0x334466, 1.8);
+        scene.add(ambientLight);
+
+        const sunLight = new THREE.DirectionalLight(0xffffff, 3.2);
+        scene.add(sunLight);
+
+        const fillLight = new THREE.DirectionalLight(0x4466aa, 0.6);
+        fillLight.position.set(-3, -1, -2);
+        scene.add(fillLight);
+
+        /**
+         * 每帧更新：地球自转对齐真实 UTC 时间 & 太阳季节性倾斜 & 场景亮度
+         *
+         * 原理：
+         *   - 太阳光源固定在 +X 方向（不绕场景旋转）
+         *   - 地球绕 Y 轴自转，自转角度 = 当前 UTC 时间对应的太阳直射经度
+         *   - UTC 12:00 → 0° 经线（格林威治）正对太阳
+         *   - 每过 1 小时，直射点西移 15°，相当于地球向东转 15°
+         */
+        function updateSunByTime() {
+            const now = new Date();
+            const utcHours = now.getUTCHours() + now.getUTCMinutes() / 60 + now.getUTCSeconds() / 3600;
+
+            // ---- 1. 地球自转：使正确经度面向太阳 ----
+            // 太阳直射经度 = (12 - utcHours) * 15°
+            // 地球 rotation.y = 直射经度弧度（正值→东经面向 +X 太阳方向）
+            const subsolarLonDeg = (12 - utcHours) * 15;
+            earthGroup.rotation.y = subsolarLonDeg * Math.PI / 180;
+
+            // ---- 2. 季节性太阳赤纬（-23.5° ~ +23.5°）----
+            const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+            // 北半球夏至约在 6/21（dayOfYear ≈ 172），冬至约在 12/21（dayOfYear ≈ 355）
+            const declinationDeg = -23.5 * Math.cos((dayOfYear + 10) / 365 * Math.PI * 2);
+            const declinationRad = declinationDeg * Math.PI / 180;
+
+            // 太阳固定在 +X 方向，Y 偏移 = 赤纬角对应的正弦分量
+            const sunDist = 5;
+            sunLight.position.set(
+                sunDist * Math.cos(declinationRad),
+                sunDist * Math.sin(declinationRad),
+                0.5
+            );
+
+            // ---- 3. 中国当地时间（UTC+8）场景亮度微调 ----
+            const chinaHours = (utcHours + 8) % 24;
+            // 中国 120°E 是否在日照半球：|subsolarLon - 120| < 90
+            const chinaLit = Math.abs(subsolarLonDeg - 120) < 90;
+            // 中国当地时间的小时 → 粗糙的白天因子
+            const chinaDayFactor = chinaLit ? Math.max(0, 1 - Math.abs(chinaHours - 12) / 6) : 0;
+
+            // 光照参数随中国昼夜微调
+            sunLight.intensity = 1.5 + chinaDayFactor * 2.5;
+            ambientLight.intensity = 0.8 + chinaDayFactor * 1.5;
+            fillLight.intensity = 0.3 + chinaDayFactor * 0.6;
+            renderer.toneMappingExposure = 0.6 + chinaDayFactor * 1.2;
+            starsMat.opacity = 0.2 + (1 - chinaDayFactor) * 0.8;
+
+            // ---- 4. 更新时间显示 ----
+            const localStr = now.toLocaleTimeString('zh-CN', { hour12: false });
+            const utcStr = now.toLocaleTimeString('zh-CN', { hour12: false, timeZone: 'UTC' });
+            const phase = chinaDayFactor > 0.6 ? '☀️ 白天' : chinaDayFactor > 0.15 ? '🌅 晨昏' : '🌙 夜晚';
+            const subsolarLonDisplay = subsolarLonDeg > 180 ? `${(360 - subsolarLonDeg).toFixed(0)}°W` : `${subsolarLonDeg.toFixed(0)}°E`;
+            document.getElementById('time-display').textContent =
+                `${localStr} CST · ${phase} · 直射 ${subsolarLonDisplay}`;
+        }
+
+        // ========== 地球 ==========
+        const earthGroup = new THREE.Group();
+        scene.add(earthGroup);
+
+        // 地球纹理
+        const textureLoader = new THREE.TextureLoader();
+        const earthMapUrl = 'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg';
+
+        const earthGeo = new THREE.SphereGeometry(1.2, 64, 64);
+        const earthMat = new THREE.MeshStandardMaterial({
+            map: textureLoader.load(earthMapUrl),
+            roughness: 0.7,
+            metalness: 0.05,
+        });
+        const earth = new THREE.Mesh(earthGeo, earthMat);
+        earthGroup.add(earth);
+
+        // ========== 大气层光晕 ==========
+        const atmosphereGeo = new THREE.SphereGeometry(1.22, 64, 64);
+        const atmosphereMat = new THREE.ShaderMaterial({
+            vertexShader: /* glsl */ `
+                varying vec3 vNormal;
+                varying vec3 vPosition;
+                void main() {
+                    vec4 worldPos = modelMatrix * vec4(position, 1.0);
+                    vNormal = normalize(mat3(modelMatrix) * normal);
+                    vPosition = worldPos.xyz;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: /* glsl */ `
+                varying vec3 vNormal;
+                varying vec3 vPosition;
+                uniform vec3 uViewDirection;
+                void main() {
+                    vec3 normal = normalize(vNormal);
+                    vec3 viewDir = normalize(uViewDirection - vPosition);
+                    float rim = 1.0 - abs(dot(normal, viewDir));
+                    rim = pow(rim, 3.5);
+                    float alpha = rim * 0.35;
+                    gl_FragColor = vec4(0.4, 0.7, 1.0, alpha);
+                }
+            `,
+            uniforms: {
+                uViewDirection: { value: camera.position },
+            },
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+        });
+        const atmosphere = new THREE.Mesh(atmosphereGeo, atmosphereMat);
+        earthGroup.add(atmosphere);
+
+        // ========== OrbitControls：鼠标拖拽旋转 + 滚轮缩放 ==========
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08;
+        controls.minDistance = 1.8;
+        controls.maxDistance = 10;
+        controls.enablePan = false;          // 禁用平移，只保留旋转和缩放
+        controls.autoRotate = false;        // 地球自转已实现真实昼夜，不再需要相机自动绕转
+        controls.target.set(0, 0, 0);
+
+        // 拖拽时切换光标样式
+        renderer.domElement.addEventListener('pointerdown', () => {
+            document.body.classList.add('dragging');
+        });
+        renderer.domElement.addEventListener('pointerup', () => {
+            document.body.classList.remove('dragging');
+        });
+
+        // ========== 隐藏提示文字 ==========
+        setTimeout(() => {
+            const hint = document.getElementById('hint');
+            if (hint) hint.style.opacity = '0';
+        }, 8000);
+
+        // ========== 响应式 ==========
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // ========== 渲染循环 ==========
+        function animate() {
+            requestAnimationFrame(animate);
+
+            controls.update();
+
+            // 更新太阳光照（跟随系统时间）
+            updateSunByTime();
+
+            // 更新大气 shader 中的视角方向
+            atmosphereMat.uniforms.uViewDirection.value.copy(camera.position);
+
+            // 星空微微旋转（夜晚看得更清楚）
+            stars.rotation.y += 0.00005;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
 </body>
 </html>
